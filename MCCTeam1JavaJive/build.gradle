@@ -1,22 +1,26 @@
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '2.7.8'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-}
+plugins { id "org.springframework.boot" version "2.1.3.RELEASE" } // this should be first line
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven'
+apply plugin: 'application'
 
-group = 'com.bah'
+group = 'com.webage.mcc'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+description = "Project-Data-API"
+
+mainClassName = "com.webage.App"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+        
+     maven { url "https://repo.maven.apache.org/maven2" }
+     
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.3.RELEASE'
 }
