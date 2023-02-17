@@ -43,4 +43,19 @@ public class RegistrationAPI {
 		}
 		return registration;
 	}
+	
+//	@PostMapping
+//	public createRegistration() {
+//		
+//	}
+//	
+//	@PutMapping
+//	public updateRegistration() {
+//		
+//	}
+//	
+//	@DeleteMapping
+//	public deleteRegistration() {
+//		
+//	}
 }

@@ -1,26 +1,34 @@
-plugins { id "org.springframework.boot" version "2.1.3.RELEASE" } // this should be first line
-apply plugin: 'java'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: 'maven'
-apply plugin: 'application'
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '2.1.8.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+//plugins { id "org.springframework.boot" version "2.1.8.RELEASE" } // this should be first line
+//apply plugin: 'java'
+//apply plugin: 'io.spring.dependency-management'
+//apply plugin: 'maven'
+//apply plugin: 'application'
 
 group = 'com.bah.mcc'
 version = '0.0.1-SNAPSHOT'
 
 description = "Project-Data-API"
 
-mainClassName = "com.bah.mcc.day1"
+//mainClassName = "com.bah.mcc.day1"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
         
-     maven { url "https://repo.maven.apache.org/maven2" }
+     mavenCentral()
      
 }
 
 dependencies {
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.1.3.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  	runtimeOnly 'org.hsqldb:hsqldb'
+  
 }
