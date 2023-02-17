@@ -33,7 +33,7 @@ public class RegistrationAPI {
 	}
 
 	@GetMapping("/{registrationId}")
-	public Registration getCustomerById(@PathVariable("registrationId") long id) {
+	public Registration getRegistrationById(@PathVariable("registrationId") long id) {
 		
 		Registration registration = null;
 		for (int i = 0; i < registrationList.size(); i++) {
