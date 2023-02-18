@@ -18,29 +18,27 @@ public class Registration {
 	private long id;
 	
 	@Column(name="EVENT_ID")
-	private String eventId;
+	private String event_id;
 	
 	@Column(name="CUSTOMER_ID")
-	private String customerName;
+	private String customer_id;
 	
-	@Column(name="REGISTRATION_DATE")
-	private Date registrationDate;
+	private Date registration_date;
 	
-	@Column(name="NOTES")
 	private String notes;
 	
-	public Registration() {
-		
-	}
-
-	public Registration(long id, String eventId, String customerName, Date registrationDate, String notes) {
-		super();
-		this.id = id;
-		this.eventId = eventId;
-		this.customerName = customerName;
-		this.registrationDate = registrationDate;
-		this.notes = notes;
-	}
+//	public Registration() {
+//		
+//	}
+//
+//	public Registration(long id, String event_id, String customer_id, Date registration_date, String notes) {
+//		super();
+//		this.id = id;
+//		this.event_id = event_id;
+//		this.customer_id = customer_id;
+//		this.registration_date = registration_date;
+//		this.notes = notes;
+//	}
 
 	public long getId() {
 		return id;
@@ -51,27 +49,45 @@ public class Registration {
 	}
 
 	public String getEventId() {
-		return eventId;
+		return event_id;
 	}
 
 	public void setEventId(String eventId) {
-		this.eventId = eventId;
+		this.event_id = eventId;
 	}
 
 	public String getCustomerName() {
-		return customerName;
+		return customer_id;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setCustomerName(String customer_id) {
+		this.customer_id = customer_id;
 	}
 
-	public Date getRegistrationDate() {
-		return registrationDate;
+	
+
+	public String getEvent_id() {
+		return event_id;
 	}
 
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
+	public void setEvent_id(String event_id) {
+		this.event_id = event_id;
+	}
+
+	public String getCustomer_id() {
+		return customer_id;
+	}
+
+	public void setCustomer_id(String customer_id) {
+		this.customer_id = customer_id;
+	}
+
+	public Date getRegistration_date() {
+		return registration_date;
+	}
+
+	public void setRegistration_date(Date registration_date) {
+		this.registration_date = registration_date;
 	}
 
 	public String getNotes() {

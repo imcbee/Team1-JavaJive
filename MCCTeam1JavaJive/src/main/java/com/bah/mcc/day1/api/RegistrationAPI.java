@@ -1,15 +1,16 @@
 package com.bah.mcc.day1.api;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,37 +23,21 @@ import com.bah.mcc.day1.repository.RegistrationsRepository;
 @RestController
 @RequestMapping("/registrations")
 public class RegistrationAPI {
-	ArrayList<Registration> registrationList = new ArrayList<Registration>();
+	
 	
 	@Autowired
 	RegistrationsRepository registrationsRepository;
 
-//	@SuppressWarnings("deprecation")
-//	public RegistrationAPI() {
-//		Registration r1 = new Registration(1L, "1", "2", new Date(), "please email me the event details");
-//		Registration r2 = new Registration(2L, "2", "2", new Date(), "send transportation and hotel booking");
-//		Registration r3 = new Registration(3L, "3", "3", new Date(), "defer payments for a week");
-//		
-//		registrationList.add(r1);
-//		registrationList.add(r2);
-//		registrationList.add(r3);
-//	}
-
 	@GetMapping
-	public Collection<Registration> getAll() {
-		return this.registrationList;
+	public Iterable<Registration> getAll() {
+		return registrationsRepository.findAll();
 	}
 
 	@GetMapping("/{registrationId}")
-	public Registration getRegistrationById(@PathVariable("registrationId") long id) {
+	public Optional<Registration> getRegistrationById(@PathVariable("registrationId") long id) {
 		
-		Registration registration = null;
-		for (int i = 0; i < registrationList.size(); i++) {
-			if (registrationList.get(i).getId() == id) {
-				registration = registrationList.get(i);
-			}
-		}
-		return registration;
+
+		return registrationsRepository.findById(id);
 	}
 	
 	@PostMapping
@@ -60,7 +45,7 @@ public class RegistrationAPI {
 		if(newRegistration.getId() != 0 ||
 				newRegistration.getCustomerName() == null ||
 				newRegistration.getEventId() == null ||
-				newRegistration.getRegistrationDate() == null ||
+				newRegistration.getRegistration_date() == null ||
 				newRegistration.getNotes() == null) {
 			
 			return ResponseEntity.badRequest().build();
@@ -73,17 +58,41 @@ public class RegistrationAPI {
 		
 		ResponseEntity<?> response = ResponseEntity.created(location).build();		
 		
+		System.out.println("Post route is working.");
 		return response;
 		
 	}
-//	
-//	@PutMapping
-//	public updateRegistration() {
-//		
-//	}
-//	
-//	@DeleteMapping
-//	public deleteRegistration() {
-//		
-//	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> updateRegistration(@PathVariable("id") long id, @RequestBody Registration updateRegistration, UriComponentsBuilder uri) {
+		if(updateRegistration.getEventId() == null || 
+				updateRegistration.getCustomerName() == null) {
+			
+			return ResponseEntity.badRequest().build();
+			
+		}
+		
+		updateRegistration = registrationsRepository.save(updateRegistration);
+		
+		System.out.println("Put route is working");
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteRegistration(@PathVariable("id") long id, UriComponentsBuilder uri) {
+		
+		registrationsRepository.deleteById(id);
+		
+		System.out.println("Delete route is working");
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
