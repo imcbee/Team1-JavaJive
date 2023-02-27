@@ -1,0 +1,30 @@
+node {
+    stage ("Checkout DataService"){
+        git branch: 'master', url: ' https://github.com/imcbee/Team1-JavaJive.git'
+    }
+    
+    stage ("Gradle Build - DataService") {
+	
+        sh 'gradle clean build' // replace all bat into sh for linux systems
+
+    }
+    
+    stage ("Gradle Bootjar-Package - DataService") {
+        sh 'gradle bootjar'
+    }
+    
+    stage('User Acceptance Test - DataService') {
+	
+	  def response= input message: 'Is this build good to go?',
+	   parameters: [choice(choices: 'Yes\nNo', description: '', name: 'Pass')]
+	
+	  if(response=="Yes") {
+
+	    stage('Release- DataService') {
+	     sh 'gradle build -x test'
+	     sh 'echo DataService is ready to release!'
+
+	    }
+	  }
+    }
+}
