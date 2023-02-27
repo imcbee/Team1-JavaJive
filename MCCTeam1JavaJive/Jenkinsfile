@@ -11,7 +11,7 @@ node {
     }
     
     stage ("Gradle Bootjar-Package - DataService") {
-        sh 'gradle bootjar'
+        sh 'cd MCCTeam1JavaJive/ && gradle bootjar'
     }
     
     stage('User Acceptance Test - DataService') {
@@ -22,7 +22,7 @@ node {
 	  if(response=="Yes") {
 
 	    stage('Release- DataService') {
-	     sh 'gradle build -x test'
+	     sh 'cd MCCTeam1JavaJive/ && gradle build -x test'
 	     sh 'echo DataService is ready to release!'
 
 	    }
