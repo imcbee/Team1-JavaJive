@@ -6,7 +6,8 @@ node {
     stage ("Gradle Build - DataService") {
 	
 		sh 'pwd'
-		sh 'cd MCCTeam1JavaJive' // move into data service folder
+		sh 'cd MCCTeam1JavaJive/' // move into data service folder
+		sh 'pwd'
         sh 'gradle clean build' // replace all bat into sh for linux systems
 
     }
