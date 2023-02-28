@@ -1,27 +1,18 @@
 package com.bah.mcc.day1.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="EVENTS")
+@Document(collection ="events")
 public class Event {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="EVENT_CODE")
 	private String code;
 	
-	@Column(name="TITLE")
 	private String title;
 	
-	@Column(name="DESCRIPTION")
 	private String description;
 	
 	public Event() {
