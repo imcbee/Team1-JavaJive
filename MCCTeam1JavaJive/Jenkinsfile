@@ -15,7 +15,7 @@ node {
     }
     
     stage ("Containerize the app-docker build - DataApi") {
-        sh 'docker build --rm -t dataapi:v1.0 -f MCCTeam1JavaJive/Dockerfile .'
+        sh 'docker build --rm -t dataapi:v1.0 MCCTeam1JavaJive/Dockerfile ./MCCTeam1JavaJive'
     }
     
     stage ("Inspect the docker image - DataApi"){
