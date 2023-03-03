@@ -25,8 +25,9 @@ node {
     
     stage ("Run Docker container instance - DataApi"){
     	sh "docker ps -a"
-        sh "docker run -d --rm --name dataapi -p 8080:8080 dataapi:v1.0"
-        sh "docker ps -a"
+    	sh "docker ps"
+        sh "docker run -d --name dataapi -p 8080:8080 dataapi:v1.0"
+        sh "docker ps"
         
      }
     
