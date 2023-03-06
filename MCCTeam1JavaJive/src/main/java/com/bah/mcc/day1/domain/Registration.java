@@ -2,17 +2,27 @@ package com.bah.mcc.day1.domain;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Document(collection ="registrations")
+
+
+@Entity
+@Table(name="REGISTRATIONS")
 public class Registration {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(name="EVENT_ID")
 	private String event_id;
 	
+	@Column(name="CUSTOMER_ID")
 	private String customer_id;
 	
 	private Date registration_date;
